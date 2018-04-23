@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<!--ws 相关-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <meta name="keywords"
+        content="admin, dashboard, bootstrap, template, flat, modern, theme, responsive, fluid, retina, backend, html5, css, css3"/>
+  <meta name="description" content=""/>
+  <meta name="author" content="ThemeBucket"/>
+  <link rel="shortcut icon" href="#" type="image/png"/>
+
+  <title>支架 - 列表</title>
+
+  <!--common-->
+  <link
+      href="http://cdn.jsdelivr.net/webjars/org.webjars/font-awesome/4.6.3/css/font-awesome.min.css"
+      th:href="@{/webjars/font-awesome/4.6.3/css/font-awesome.min.css}" rel="stylesheet"/>
+  <link href="../static/css/style.css"
+        th:href="@{/css/style.css}" media="screen" rel="stylesheet"/>
+  <link href="../static/css/style-responsive.css"
+        th:href="@{/css/style-responsive.css}" rel="stylesheet"/>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="sticky-header">
+
+<section>
+  <!-- left side start-->
+  <div class="left-side sticky-left-side"
+       th:replace="fragments/sidebar :: index(avatarUrl=${avatarUrl}, username=${name})">
+
+    <!--logo and iconic logo start-->
+    <div class="logo">
+      <a href="index.html"><img class="response-w" src="../static/images/logo.png"
+                                th:src="@{/images/logo.png}" alt=""/></a>
+    </div>
+
+    <div class="logo-icon text-center">
+      <a href="index.html"><img class="response-h" src="../static/images/logo.png"
+                                th:src="@{/images/logo.png}" alt=""/></a>
+    </div>
+    <!--logo and iconic logo end-->
+
+    <div class="left-side-inner">
+
+      <!-- visible to small devices only -->
+      <div class="visible-xs hidden-sm hidden-md hidden-lg">
+        <div class="media logged-user">
+          <img alt="" class="response-h media-object" src="../static/images/logo.png"
+               th:src="${avatarUrl}"/>
+          <div class="media-body">
+            <h4><a href="#" th:text="${name}">张勇</a></h4>
+            <span>"Hello There..."</span>
+          </div>
+        </div>
+        <ul class="nav nav-pills nav-stacked custom-nav">
+          <li><a href="/logout"><i class="fa fa-sign-out"></i> <span>退出</span></a></li>
+        </ul>
+      </div>
+
+      <!--sidebar nav start-->
+      <ul class="nav nav-pills nav-stacked custom-nav">
+        <li><a href="index.html"><i class="fa fa-list-ul"></i> <span>支架列表</span></a></li>
+        <li class=""><a href="medicine/stent"><i class="fa fa-circle"></i><span>支架管理</span>
+        </a></li>
+      </ul>
+      <!--sidebar nav end-->
+
+    </div>
+  </div>
+  <!-- left side end-->
+
+  <!-- main content start-->
+  <div class="main-content">
+
+    <!-- header section start-->
+    <div class="header-section"
+         th:replace="fragments/header :: index(avatarUrl=${avatarUrl}, username=${name})">
+
+      <!--toggle button start-->
+      <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+      <!--toggle button end-->
+
+      <!--search start-->
+      <!-- <form class="searchform" action="index.html" method="post">
+          <input type="text" class="form-control" name="keyword" placeholder="Search here..." />
+      </form> -->
+      <!--search end-->
+
+      <!--notification menu start -->
+      <div class="menu-right">
+        <ul class="notification-menu">
+          <li>
+            <a href="#" class="btn btn-default dropdown-toggle">
+              <img src="../static/images/user1.png"
+                   th:src="${avatarUrl}"
+                   th:alt="${name}"/>
+              <span th:text="${name}">张勇</span>
+              <i class="fa fa-sign-out"></i>退出
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!--notification menu end -->
+    </div>
+    <!-- header section end-->
+
+    <!--body wrapper start-->
+    <div class="wrapper">
+      <div>
+        <a href="#" th:href="@{/stent/new}">新增支架</a>
+
+      </div>
+
+      <form id="query-stent" class="form-horizontal" action="/stent"
+            method="GET">
+        <div class="form-group new-stent">
+          <div class="panel-body">
+            <input class="form-control" id="query_stent" name="name" th:value="${coronaryStentName}" placeholder="请输入支架名称"/>
+          </div>
+          <button class="btn btn-main" type="submit">查询</button>
+        </div>
+      </form>
+      <span th:if="${paging}==true" th:text="'共计支架记录' + ${total} + '条, 当前显示第' + ${pageAt} + '页'">共计药品记录记录100条, 当前显示第3页</span>
+      <div id="coronaryStentList" class="coronaryStentList">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <td>支架名称</td>
+            <td>厂家</td>
+            <td>支架材料</td>
+            <td>支架图层</td>
+            <td colspan="2">操作</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="clickable-row" th:each="coronaryStent:${coronaryStentList}">
+            <td th:text="${coronaryStent.name}">支架名称</td>
+            <td th:text="${coronaryStent.company}">厂家</td>
+            <td th:text="${coronaryStent.material}">支架材料</td>
+            <td th:text="${coronaryStent.coatingDrug}">支架图层</td>
+            <td>
+              <a href="coronaryStent" class="btn-group-vertical"
+                 th:href="@{'/stent/'+${coronaryStent.id}}">编辑
+              </a>
+
+              <!--  <form method="POST" class="btn-group-vertical" th:action="@{'/medicine/coronaryStent/'+${coronaryStent.id}}">
+                  <button type="submit"   name="submit" value="value" class="btn-link">删除</button>
+                </form>-->
+            </td>
+            <!--  <td>
+                <form method="POST" th:action="@{'medicine/coronaryStent/'+${coronaryStent.id}}">
+                  <button type="submit" name="submit" value="value" class="btn-link">编辑</button>
+                </form>
+              </td>-->
+          </tr>
+          </tbody>
+        </table>
+        <ul th:if="${paging}==true" class="pager">
+          <li th:text="${pageAt}+'/'+${totalPage}"></li>
+          <li th:if="${pageAt} > 1"><a href="#"
+                                       th:href="@{/stent/(pageAt=${pageAt}-1,name=${coronaryStentName})}">上一页</a>
+          </li>
+          <li th:if="${pageAt} ==  1"><a href="#" class="btn disabled">上一页</a></li>
+          <li th:if="${realSize} &lt; ${pageSize} "><a href="#" class="btn disabled">下一页</a></li>
+          <li th:if="${realSize} == ${pageSize}">
+
+            <a href="#"
+               th:href="@{/stent/(pageAt=${pageAt}+1,name=${coronaryStentName})}">下一页</a>
+          </li>
+          <li>
+            <span>
+            <form class="form-inline" id="goToPage"
+                  action="/stent/"
+                  method="GET">
+              <div class="form-group pageAt">
+                <div class="panel-body">
+
+                   <input type="hidden" class="form-control" th:value="${coronaryStentName}" name="name" />
+
+                  <input type="number" class="form-control" id="pageAt"
+                         th:value="${pageAt}" name="pageAt" placeholder="pageNum"/>
+                </div>
+                <div class="panel-body hidden">
+                  <input type="number" class="form-control hidden" id="totalPage"
+                         th:value="${totalPage}" name="" placeholder="pageNum"/>
+                </div>
+                <button type="button" class="btn btn-main"
+                        th:onclick="'checkpage()'">Go</button>
+              </div>
+            </form>
+            </span>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+    <!--body wrapper end-->
+
+    <!--footer section start-->
+    <footer th:replace="fragments/footer :: copy">
+      &copy; 2016 原型
+    </footer>
+    <!--footer section end-->
+
+  </div>
+  <!-- main content end-->
+  <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+              class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="mySmallModalLabel">提示信息</h4>
+        </div>
+        <div class="modal-body">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+  /*<![CDATA[*/
+  function checkpage() {
+    var pageAt = parseInt($("#pageAt").val());
+    var totalPage = parseInt($("#totalPage").val());
+    if (pageAt > totalPage || pageAt < 1) {
+      alert("页码应该在  1 和 " + totalPage +"之间")
+      return false;
+    }
+    $("#goToPage").submit();
+    /*]]>*/
+  }
+
+</script>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="http://cdn.jsdelivr.net/webjars/org.webjars/jquery/1.10.2/jquery.min.js"
+        th:src="@{/webjars/jquery/1.10.2/jquery.min.js}"></script>
+<script
+    src="http://cdn.jsdelivr.net/webjars/org.webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.min.js"
+    th:src="@{/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.min.js}"></script>
+<script src="http://cdn.jsdelivr.net/webjars/org.webjars/jquery-migrate/1.2.1/jquery-migrate.min.js"
+        th:src="@{/webjars/jquery-migrate/1.2.1/jquery-migrate.min.js}"></script>
+<script src="http://cdn.jsdelivr.net/webjars/org.webjars/bootstrap/3.3.1/js/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/3.3.1/js/bootstrap.min.js}"></script>
+<script src="http://cdn.jsdelivr.net/webjars/org.webjars/modernizr/2.6.2/modernizr.min.js"
+        th:src="@{/webjars/modernizr/2.6.2/modernizr.min.js}"></script>
+<script src="../static/js/jquery.nicescroll.js"
+        th:src="@{/js/jquery.nicescroll.js}"></script>
+
+
+<!--common scripts for all pages-->
+<script src="../static/js/scripts.js" th:src="@{/js/scripts.js}"></script>
+
+</body>
+</html>
