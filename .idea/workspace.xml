@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af427694-217e-41f2-874f-f58dbd4a0e41" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-    </list>
+    <list default="true" id="af427694-217e-41f2-874f-f58dbd4a0e41" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -552,12 +550,12 @@
       <workItem from="1522416344090" duration="2034000" />
       <workItem from="1524213955854" duration="9423000" />
       <workItem from="1524469760663" duration="2103000" />
-      <workItem from="1524471893303" duration="5183000" />
+      <workItem from="1524471893303" duration="5382000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196880000" />
+    <option name="totallyTimeSpent" value="197079000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
