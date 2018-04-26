@@ -5,7 +5,8 @@ from time import sleep
 from PIL import Image
 import pytesseract
 
-
+SCREEN="clawerImgs/screenshot.png"
+VALIDATE="clawerImgs/verification.png"
 def write_txt(txt):
   with open("log.txt", 'a') as f:
     print(txt + '\n')
@@ -27,10 +28,24 @@ def main():
   driver.set_window_size(1080, 800)
   driver.maximize_window()
   driver.get('http://cdmc.cep.webtrn.cn')
-  driver.get_screenshot_as_file("clawerImgs/screenshot.png")
+  driver.get_screenshot_as_file(SCREEN)
+  crop_image(SCREEN)
+  images(VALIDATE)
   while True:
     findAlert(driver)
   driver.quit()
+
+
+def crop_image(file):
+  x=226
+  y=436
+  w=58
+  h=20
+  im = Image.open(file)
+  img = im.crop((x, y, x+w, y+h))
+  img.save(VALIDATE)
+  # img.show()
+  return img
 
 
 def images(file):
@@ -44,7 +59,7 @@ def images(file):
     else:
       table.append(1)
   out = imgry.point(table, '1')
-  out.show()
+  # out.show()
 
   # print pytesser.image_file_to_string(out)
   tex = pytesseract.image_to_string(out)
@@ -52,4 +67,4 @@ def images(file):
 
 
 if __name__ == '__main__':
-  images("1627.png")
+  main()

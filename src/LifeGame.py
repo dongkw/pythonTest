@@ -5,7 +5,7 @@ from pygame.locals import *
 
 # 矩阵宽与矩阵高
 WIDTH = 160
-HEIGHT = 160
+HEIGHT = 100
 
 # 记录鼠标按键情况的全局变量
 pygame.button_down = False
@@ -33,7 +33,7 @@ class Cell(pygame.sprite.Sprite):
 
 # 绘图函数，注意到我们是把画布重置了再遍历整个世界地图，因此有很大的性能提升空间
 def draw():
-  screen.fill((0, 0, 0))
+  screen.fill((50, 50, 50))
   for sp_col in range(pygame.world.shape[1]):
     for sp_row in range(pygame.world.shape[0]):
       if pygame.world[sp_row][sp_col]:
