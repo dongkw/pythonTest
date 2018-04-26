@@ -5,8 +5,10 @@ from time import sleep
 from PIL import Image
 import pytesseract
 
-SCREEN="clawerImgs/screenshot.png"
-VALIDATE="clawerImgs/verification.png"
+SCREEN = "clawerImgs/screenshot.png"
+VALIDATE = "clawerImgs/verification.png"
+
+
 def write_txt(txt):
   with open("log.txt", 'a') as f:
     print(txt + '\n')
@@ -37,12 +39,12 @@ def main():
 
 
 def crop_image(file):
-  x=226
-  y=436
-  w=58
-  h=20
+  x = 226
+  y = 436
+  w = 58
+  h = 20
   im = Image.open(file)
-  img = im.crop((x, y, x+w, y+h))
+  img = im.crop((x, y, x + w, y + h))
   img.save(VALIDATE)
   # img.show()
   return img
@@ -60,10 +62,12 @@ def images(file):
       table.append(1)
   out = imgry.point(table, '1')
   # out.show()
-
-  # print pytesser.image_file_to_string(out)
   tex = pytesseract.image_to_string(out)
   print(tex)
+
+
+def login(driver):
+  return
 
 
 if __name__ == '__main__':
