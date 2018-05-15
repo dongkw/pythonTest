@@ -7,12 +7,14 @@ import pytesseract
 
 SCREEN = "clawerImgs/screenshot.png"
 VALIDATE = "clawerImgs/verification.png"
+
 driver = webdriver.Chrome()
 driver.set_window_size(1080, 800)
 driver.maximize_window()
 driver.get('http://cdmc.cep.webtrn.cn')
 USER_NAME = 'C171110603617'
 PASSWORD = '111111'
+AUTO_TIME = 10
 
 
 def write_txt(txt):
@@ -26,8 +28,8 @@ def findAlert():
   handles = driver.window_handles
 
   for newhandle in handles:
-    sleep(10)
-    driver.switch_to_window(newhandle)
+    sleep(AUTO_TIME)
+    driver.switch_to.window(newhandle)
     try:
       play()
     except:
@@ -37,24 +39,28 @@ def findAlert():
     except:
       write_txt("现在无alert")
     driver.switch_to.parent_frame()
+
+
 # 模拟点击alert
 def alert():
   driver.switch_to.frame('scormContent')
-  driver.switch_to_frame(0)
+  driver.switch_to.frame(0)
   a1 = driver.switch_to.alert  # 通过switch_to.alert切换到alert
   a1.accept()
+
+
 # 如果没有播放则播放视频
 def play():
   driver.switch_to.frame('scormContent')
-  driver.switch_to_frame(0)
-  play=driver.find_element_by_id('flash_player_display_button')
-  playStyle=play.get_attribute('style')+""
-  if(playStyle.find("opacity: 0;")):
+  driver.switch_to.frame(0)
+  play = driver.find_element_by_id('flash_player_display_button')
+  playStyle = play.get_attribute('style') + ""
+  if (playStyle.find("opacity: 0;")):
     write_txt("视频未自动播放 ---点击播放")
     play.click()
 
-def main():
 
+def main():
   login()
   sleep(2)
   study()
@@ -65,13 +71,14 @@ def main():
 
 
 def study():
-  imgs=driver.find_elements_by_class_name('img')
+  imgs = driver.find_elements_by_class_name('img')
   for img in imgs:
     sleep(1)
     img.click()
 
+
 def login():
-  code=get_code()
+  code = get_code()
   driver.switch_to.frame('center')
   user = driver.find_element_by_id('loginId')
   pwd = driver.find_element_by_id('passwd')
@@ -83,6 +90,7 @@ def login():
   autoCode.send_keys(code)
   Login_btn.click();
 
+
 # 获取验证码
 def get_code():
   sleep(0.5)
@@ -91,7 +99,9 @@ def get_code():
   code = images(VALIDATE)
   return code
 
-  #找到验证码
+  # 找到验证码
+
+
 def crop_image(file):
   x = 385
   y = 870
@@ -102,6 +112,7 @@ def crop_image(file):
   img.save(VALIDATE)
   # img.show()
   return img
+
 
 # 把图片变为数字
 def images(file):
@@ -118,7 +129,6 @@ def images(file):
   # out.show()
   tex = pytesseract.image_to_string(out)
   return tex
-
 
 
 if __name__ == '__main__':
