@@ -24,7 +24,7 @@ def open_pg_database():
 
 def select(sql):
   conn = open_pg_database()
-  cur = conn.cursor();
+  cur = conn.cursor()
   cur.execute(sql)
   rows = cur.fetchall()
   conn.close()
