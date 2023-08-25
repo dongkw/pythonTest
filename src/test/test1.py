@@ -43,22 +43,17 @@ def on_press(key):
     except AttributeError:
         pass
 
-
 def on_release(key):
     if key == keyboard.Key.esc:
         # 停止监听器
         return False
 
 
-def main():
+if __name__ == "__main__":
     # 创建一个监听器
     listener = keyboard.Listener(on_press=on_press, on_release=on_release)
     # 启动监听器
     listener.start()
-
-
-if __name__ == "__main__":
-    main()
     # 保持主线程运行
     while True:
         pass

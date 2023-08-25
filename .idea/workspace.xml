@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ca483eb0-5dde-4f45-ad9c-f5214b6d888d" name="变更" comment="变更">
-      <change afterPath="$PROJECT_DIR$/.idea/easyCodeTableSetting.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/pythonTest.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/test1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sql/update_name.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/sql/update_name.py" afterDir="false" />
-    </list>
+    <list default="true" id="ca483eb0-5dde-4f45-ad9c-f5214b6d888d" name="变更" comment="变更" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -493,7 +483,7 @@
       <workItem from="1691372801544" duration="598000" />
       <workItem from="1691375220472" duration="757000" />
       <workItem from="1691548568194" duration="1678000" />
-      <workItem from="1692945070135" duration="7182000" />
+      <workItem from="1692945070135" duration="7889000" />
     </task>
     <servers />
   </component>
