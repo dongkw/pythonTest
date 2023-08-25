@@ -4,7 +4,7 @@ from pynput import keyboard
 class MyDataStructure:
     def __init__(self):
         self.ball = []
-        self.skill = ['','']
+        self.skill = ['', '']
 
     def add_ball(self, item):
         self.ball.append(item)
@@ -12,17 +12,18 @@ class MyDataStructure:
             self.ball = self.ball[-3:]
 
     def add_skill(self, item):
-        if(item!=self.skill[0] and item!=self.skill[1]):
+        if (item != self.skill[0] and item != self.skill[1]):
             self.skill[1] = self.skill[0]
             self.skill[0] = item
 
     def gen_skill(self):
         if len(self.ball) == 3:
             str = self.ball[0] + self.ball[1] + self.ball[2]
-            print("生成技能"+str)
+            print("生成技能" + str)
             self.add_skill(str)
-    def release_skill(self,i):
-        print("释放技能"+self.skill[i-1])
+
+    def release_skill(self, i):
+        print("释放技能" + self.skill[i - 1])
 
 
 my_data = MyDataStructure()
@@ -36,12 +37,13 @@ def on_press(key):
             print(my_data.ball)
         if key.char in ['r']:
             my_data.gen_skill()
-        if key.char =='d':
+        if key.char == 'd':
             my_data.release_skill(1)
-        if key.char =='f':
+        if key.char == 'f':
             my_data.release_skill(2)
     except AttributeError:
         pass
+
 
 def on_release(key):
     if key == keyboard.Key.esc:
