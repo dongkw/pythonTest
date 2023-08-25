@@ -19,11 +19,12 @@ class MyDataStructure:
     def gen_skill(self):
         if len(self.ball) == 3:
             str = self.ball[0] + self.ball[1] + self.ball[2]
-            print("生成技能" + str)
+            print("skill" + str)
             self.add_skill(str)
 
     def release_skill(self, i):
-        print("释放技能" + self.skill[i - 1])
+        print("release" + self.skill[i - 1])
+        # read_and_print_file("11.txt")
 
 
 my_data = MyDataStructure()
@@ -49,7 +50,13 @@ def on_release(key):
     if key == keyboard.Key.esc:
         # 停止监听器
         return False
-
+def read_and_print_file(file_path):
+    try:
+        with open(file_path, 'r') as file:
+            content = file.read()
+            print(content)
+    except FileNotFoundError:
+        print("File not found.")
 
 if __name__ == "__main__":
     # 创建一个监听器
