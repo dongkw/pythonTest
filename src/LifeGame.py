@@ -150,6 +150,5 @@ if __name__ == '__main__':
   screen = pygame.display.set_mode((WIDTH * Cell.size, HEIGHT * Cell.size))
 
   while True:  # 游戏主循环
-
     state = state_actions[state]()
     pygame.display.update()
